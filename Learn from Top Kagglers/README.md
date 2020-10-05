@@ -1,5 +1,3 @@
-# Learning from top Kagglers
-
 ## Kaggle
 It is all about data and making things work, not about algorithms itself.
 - everyone can and will tune classic approaches
@@ -10,15 +8,16 @@ There is no "silver bullet" algorithm.
 ## Week 1
 One tool is [Vowpal Wabbit](https://github.com/VowpalWabbit/vowpal_wabbit), designed to provide blazing speed and handle really large data sets, which don't fit into memory.
 `libfm` and `libffm` implement different types of optimization machines, and often used for sparse data like click-through rate prediction.
-[fast_rgf](https://github.com/baidu/fast_rgf) is an alternative base method, which I suggest you to use in ensembles.
+
 
 ### numeric features
 - Tree-based model
-- Non-tree-based model: KNN, linear model, NN
-Need to scale the features in non-tree-based models.
-For example, KNN: slightly difference in some features will result in very big impact on predictions, making the KNN favouring the features over all others.
-Also,  we want the regularization to be applied to linear models coefficients for features in equal amount. But in fact, regularization impact turns out to be proportional to feature scale. Same reason for NN.
-GD can go crazy with different feature scaling.
+- Non-tree-based model: KNN, linear model, NN.
+	- Need to scale the features in non-tree-based models.
+	- For example, in KNN, slightly difference in some features will result in very big impact on predictions, making the KNN favouring the features over all others.
+	- Also, we want the regularization to be applied to linear models coefficients for features in equal amount. But in fact, regularization impact turns out to be proportional to feature scale. Same reason for NN.
+	- GD can go crazy with different feature scaling.
+
 #### scaling
 - To `[0,1]` by applying `sklearn.preprocessing.MinMaxScaler`
 $X = (X - X_{\text{min}})/(X_{\text{max}} - X_{\text{min}})$
@@ -285,8 +284,8 @@ gb.columns = ['user_id', 'page_id', 'min_price', 'max_price']
 	# Xgboost
 	booster.predict(pred_leaf=True)
 	```
-	[reference](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html)
-	[FB paper](https://research.fb.com/wp-content/uploads/2016/11/practical-lessons-from-predicting-clicks-on-ads-at-facebook.pdf)
+	- [reference](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html)
+	- [FB paper](https://research.fb.com/wp-content/uploads/2016/11/practical-lessons-from-predicting-clicks-on-ads-at-facebook.pdf)
 
 ### [t-SNE](https://distill.pub/2016/misread-tsne/)
 - t-SNE is one of manifold learning methods which projects points from the high dimensional space to low dimensional space so that the distances between points are approximately preserved. Other [manifold learning](https://scikit-learn.org/stable/auto_examples/manifold/plot_compare_methods.html) methods
